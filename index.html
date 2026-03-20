@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vending Dashboard</title>
+</head>
+<body>
+    <h1>Danh sách máy bán hàng</h1>
+
+    <button onclick="loadData()">Load Machines</button>
+
+    <ul id="list"></ul>
+
+    <script>
+        async function loadData() {
+            let res = await fetch("https://your-api-url/api/Machines");
+            let data = await res.json();
+
+            let list = document.getElementById("list");
+            list.innerHTML = "";
+
+            data.forEach(m => {
+                let li = document.createElement("li");
+                li.innerText = m.name + " - " + m.status;
+                list.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
