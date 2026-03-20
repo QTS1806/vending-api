@@ -6,13 +6,11 @@
 <body>
     <h1>Danh sách máy bán hàng</h1>
 
-    <button onclick="loadData()">Load Machines</button>
-
     <ul id="list"></ul>
 
     <script>
         async function loadData() {
-            let res = await fetch("https://your-api-url/api/Machines");
+            let res = await fetch("https://localhost:7288/api/Machines");
             let data = await res.json();
 
             let list = document.getElementById("list");
@@ -24,6 +22,12 @@
                 list.appendChild(li);
             });
         }
+
+        // chạy lần đầu
+        loadData();
+
+        // tự cập nhật mỗi 2 giây
+        setInterval(loadData, 2000);
     </script>
 </body>
 </html>
